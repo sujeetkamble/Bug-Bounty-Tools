@@ -16,8 +16,8 @@ echo "
 echo "               Welcome to UniSUB!"
 echo -e "        Created with \e[31m♥️\e[0m  by Sujeet Kamble"
 echo ""
-echo "Usage: suzsub [folder name] "
-echo "Example: suzsub google "
+echo "Usage: unisub [folder name] "
+echo "Example: unisub google "
 echo "-----------------------------------------------------------"
 
 #############################
@@ -29,7 +29,7 @@ folder=$1
 ## count
 num1=1
 ## list
-sources=("alienvault" "anubis" "bevigil" "binaryedge" "bufferover" "c99" "censys" "certspotter" "chaos" "chinaz" "commoncrawl" "crtsh" "digitorus" "dnsdb" "dnsdumpster" "dnsrepo" "fofa" "fullhunt" "hackertarget" "hunter" "intelx" "netlas" "leakix" "passivetotal" "quake" "rapiddns" "redhuntlabs" "robtex" "securitytrails" "shodan" "sitedossier" "threatbook" "virustotal" "waybackarchive" "whoisxmlapi" "zoomeyeapi" "facebook" "builtwith" "github")
+sources=("alienvault" "anubis" "bevigil" "binaryedge" "bufferover" "c99" "censys" "certspotter" "chaos" "chinaz" "commoncrawl" "crtsh" "digitorus" "dnsdb" "dnsdumpster" "dnsrepo" "fofa" "fullhunt" "hackertarget" "hunter" "intelx" "netlas" "leakix" "passivetotal" "quake" "rapiddns" "redhuntlabs" "robtex" "securitytrails" "shodan" "sitedossier" "threatbook" "virustotal" "waybackarchive" "whoisxmlapi" "zoomeyeapi" "facebook" "builtwith")
 
 
 #############################
@@ -61,12 +61,14 @@ for source in "${sources[@]}"; do
   ((num1++))
 done
 
-sort suball | uniq > main/uniquesub.txt
-sort suball | uniq -c | sort -n > main/sortedsub.txt
+## make the files
+sort suball | uniq -c | sort -n > main/numbered.txt
+sed 's/^[[:space:]]*[0-9]\+[[:space:]]*//' main/numbered.txt > main/uniquesub.txt
+echo "Running Httprobe...."
+cat main/uniquesub.txt | httprobe > main/httprobe.txt
 
 
-
-echo""
+echo ""
 echo "Done."
 
 

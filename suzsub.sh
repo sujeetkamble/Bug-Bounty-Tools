@@ -18,6 +18,7 @@ echo "Usage: suzsub [folder name] [domain name]"
 echo "Example: suzsub google google.com"
 echo "-----------------------------------------------------------"
 
+
 #############################
 ######   paramentes   #######
 
@@ -28,7 +29,8 @@ domain=$2
 ## count
 num1=1
 ## list
-sources=("alienvault" "anubis" "bevigil" "binaryedge" "bufferover" "c99" "censys" "certspotter" "chaos" "chinaz" "commoncrawl" "crtsh" "digitorus" "dnsdb" "dnsdumpster" "dnsrepo" "fofa" "fullhunt" "hackertarget" "hunter" "intelx" "netlas" "leakix" "passivetotal" "quake" "rapiddns" "redhuntlabs" "robtex" "securitytrails" "shodan" "sitedossier" "threatbook" "virustotal" "waybackarchive" "whoisxmlapi" "zoomeyeapi" "facebook" "builtwith" "github")
+sources=("alienvault" "anubis" "bevigil" "binaryedge" "bufferover" "c99" "censys" "certspotter" "chaos" "chinaz" "commoncrawl" "crtsh" "digitorus" "dnsdb" "dnsdumpster" "dnsrepo" "fofa" "fullhunt" "hackertarget" "hunter" "intelx" "netlas" "leakix" "passivetotal" "quake" "rapiddns" "redhuntlabs" "robtex" "securitytrails" "shodan" "sitedossier" "threatbook" "virustotal" "waybackarchive" "whoisxmlapi" "zoomeyeapi" "facebook" "builtwith")
+
 
 #############################
 ######   functions   ########
@@ -55,6 +57,9 @@ for source in "${sources[@]}"; do
   ((num1++))
 done
 
-## 
-
 #############################
+
+
+
+
+## Add list of other tools for findind subdomains
