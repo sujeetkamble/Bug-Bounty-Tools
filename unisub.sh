@@ -52,20 +52,22 @@ cd $folder
 
 ## create temp folder
 mkdir main
-rm suball
-touch suball
+rm allsub
+touch allsub
 
 ## loop the main command 
 for source in "${sources[@]}"; do
-  cat ./sub$num1$source >> suball
+  cat ./sub$num1$source >> allsub
   ((num1++))
 done
 
+rm sub*
+
 ## make the files
-sort suball | uniq -c | sort -n > main/numbered.txt
-sed 's/^[[:space:]]*[0-9]\+[[:space:]]*//' main/numbered.txt > main/uniquesub.txt
+sort allsub | uniq -c | sort -n > main/sub-numbered.txt
+sed 's/^[[:space:]]*[0-9]\+[[:space:]]*//' main/sub-numbered.txt > main/sub-all.txt
 echo "Running Httprobe...."
-cat main/uniquesub.txt | httprobe > main/httprobe.txt
+cat main/sub-all.txt | httprobe > main/httprobe.txt
 
 
 echo ""
