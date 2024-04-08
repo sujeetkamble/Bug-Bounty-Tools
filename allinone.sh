@@ -60,6 +60,12 @@ while read -r domain; do
     ./../unisub.sh $domain
 done < ../$2 
 
+## Run IpSuz
+while read -r domain; do
+    echo "Running IpSuz on $domain"
+    ./../ipsuz.sh $domain
+done < ../$2 
+
 ## Run Gowitness
 while read -r domain; do
     echo "Running Gowitness on $domain"
