@@ -51,15 +51,29 @@ cd $domain_name
 cd main
 
 ## create output file
-touch iplist.txt
+touch ip-all.txt
 
 ## loop the main command 
 while read -r domain; do
     ip=$(dig +short "$domain" | tail -n1)
     echo "$domain: $ip"
-done < uniquesub.txt > ipsub.txt
+done < sub-all.txt > sub-ip.txt
 
-awk '$2 {print $2}' ipsub.txt | sort | uniq > iplist.txt
+awk '$2 {print $2}' sub-ip.txt | sort | uniq > ip-all.txt
+
+# unresolved ip list
+cat ip-all.txt | grep -v '^[0-9]' > ip-unresolved-list.txt
+
+# private ip list
+cat ip-all.txt | grep '^10\.' > ip-private-list.txt
+cat ip-all.txt | grep -E '^172\.1[6-9]\.|^172\.2[0-9]\.|^172\.3[0-1]\.' >> ip-private-list.txt
+cat ip-all.txt | grep '^192\.168\.' >> ip-private-list.txt
+
+# public ip list
+diff ip-all.txt ip-private-list.txt | grep '^<' | sed 's/^< //g' > temp1
+diff temp1 ip-unresolved-list.txt | grep '^<' | sed 's/^< //g' > ip-public-list.txt
+
+rm temp1
 
 echo ""
 echo "Remove the private ip addresses -"
@@ -71,5 +85,8 @@ echo "Done."
 
 #############################
 
-## Add list of DNS resolvers like
+## For unresolved subdomains 
+## use different-different DNS resolves
+## example
 ## dig @9.9.9.9 +short "$domain"
+## and other DNS resolvers
