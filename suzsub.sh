@@ -53,7 +53,7 @@ cd $folder
 ## loop the main command 
 for source in "${sources[@]}"; do
   echo "Running $num1 : $source"
-  subfinder -silent -d $domain -o ./sub$num1$source -sources $source > /dev/null
+  subfinder -duc -silent -d $domain -o ./sub$num1$source -sources $source > /dev/null
   ((num1++))
 done
 
