@@ -1,6 +1,12 @@
 # Bug-Bounty-Tools (work in progress)
 Tools created by me to help me automate for better and fast recon and.....
 
+### Prerequisite
+1. Subfinder (set api keys in the config file) 
+2. Dig
+3. Awk
+
+
 ### AllInOne
 Combined all tools
 
